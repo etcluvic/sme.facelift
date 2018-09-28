@@ -1,0 +1,33 @@
+<!doctype html>
+<title>Flask - Results</title>
+<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+{% for r in results %}
+  {% if r['doi'][0] != 'None' %}
+  <div>
+    <a href="https://doi.org/{{ r['doi'][0] }}">{{ r['title'][0] }}</a><br/>
+    {{ r['keywords'][0] }}
+  </div>
+  {% else %}
+  <div>
+    {{ r['title'][0] }}<br/>
+    {% set list1 = r['keywords'][0].split(' ') %}
+    {% for l in list1 %}
+      <a href="?{{ l }}">{{ l }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <hr>
+{% endfor %}
+
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% else %}
+  <h1>Hello, World!</h1>
+{% endif %}
+
+<div class="pure-g">
+    <div class="pure-u-2-24"><p>Thirds</p></div>
+    <div class="pure-u-20-24"><p>Thirds</p></div>
+    <div class="pure-u-2-24"><p>Thirds</p></div>
+</div>
