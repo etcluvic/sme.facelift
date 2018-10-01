@@ -17,7 +17,7 @@ def hello_world():
 
 @app.route('/results/')
 #@app.route('/results/<name>')
-def hello(query=None):
+def getResults(query=None):
 
     url_for('static', filename='share.png')
     url_for('static', filename='3.points-2.png')
@@ -26,9 +26,9 @@ def hello(query=None):
         print('post method!!!!')
     else:
         print('get method!!!!')
-        print('*get*', request.args["queryString"])
+        #print('*get*', request.args["queryString"])
 
-    print('*', request.query_string, '*')
+    #print('*', request.query_string, '*')
     queryString = request.query_string
 
     url = 'http://206.12.100.91:8983/solr/sme/select?q='+ queryString + '&wt=json&rows=100'

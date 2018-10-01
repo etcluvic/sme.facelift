@@ -12,7 +12,7 @@ https://purecss.io/forms/
     <div class="pure-u-20-24">
 
     <div>
-      <form class="pure-form" action="" method="get">
+      <form class="pure-form" action="" method="get" id="myForm">
         <fieldset>
             <legend><strong>CO.SHS Social Media Engine</strong> - <a href="/static/3.points-2.png" target="_blank">About</a></legend>
 
@@ -22,7 +22,8 @@ https://purecss.io/forms/
           <div>
 
             <label for="remember">
-                <input id="enhanced" type="checkbox"> display social media enhanced results
+                <input type="radio" name="frmact" value="" checked="checked" onclick="formaction(this)"/>social media enhanced results
+                <input type="radio" name="frmact" value="http://path1" onclick="formaction(this)"/> regular results
             </label>
 
           </div>
@@ -32,6 +33,13 @@ https://purecss.io/forms/
           </div>
         </fieldset>
       </form>
+
+      <script>
+        function formaction(checkbox){
+          document.getElementById("myForm").action = checkbox.value;;
+        }
+      </script>
+
     </div>
 
 {% for r in results %}
