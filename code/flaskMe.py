@@ -2,10 +2,30 @@ from flask import Flask, url_for
 from flask import render_template
 from flask import request
 from urllib2 import *
+from bs4 import BeautifulSoup
 import simplejson
+import os
+import codecs
 
 def printSeparator(character='*', times=50):
     print(character * times)
+
+#elevation file - begin
+elevationFile = 'elevationFiles/2018-10-02_21-00-07-646785.xml'
+
+f = codecs.open(os.path.join(elevationFile),'r','utf-8')
+content = f.read()
+f.close()
+
+smKeywords = []
+efSoup = BeautifulSoup(content, 'lxml')
+queryElements = efSoup.find_all('query')
+for qe in queryElements:
+    if qe.has_attr('text'):
+        smKeywords += qe['text'].split()
+
+print(smKeywords)
+#elevation file - end
 
 app = Flask(__name__)
 """
@@ -38,6 +58,6 @@ def getResults(query=None):
     print(response['response']['numFound'], "documents found.")
 
 
-    return render_template('pure.results.html', results=response['response']['docs'])
+    return render_template('pure.results.sm.html', results=response['response']['docs'], smk=set(smKeywords))
 
     printSeparator()
