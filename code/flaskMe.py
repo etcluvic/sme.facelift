@@ -24,7 +24,10 @@ for qe in queryElements:
     if qe.has_attr('text'):
         smKeywords += qe['text'].split()
 
-print(smKeywords)
+#remove duplicates by turning the list into a set
+smKeywords = sorted(list(set(smKeywords)))
+print(type(smKeywords))
+#print(smKeywords)
 #elevation file - end
 
 app = Flask(__name__)
@@ -58,6 +61,6 @@ def getResults(query=None):
     print(response['response']['numFound'], "documents found.")
 
 
-    return render_template('pure.results.sm.html', results=response['response']['docs'], smk=set(smKeywords))
+    return render_template('pure.results.sm.html', results=response['response']['docs'], smk=smKeywords)
 
     printSeparator()
