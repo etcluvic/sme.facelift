@@ -26,7 +26,7 @@ for qe in queryElements:
 
 #remove duplicates by turning the list into a set
 smKeywords = sorted(list(set(smKeywords)))
-print(type(smKeywords))
+#print(type(smKeywords))
 #print(smKeywords)
 #elevation file - end
 
